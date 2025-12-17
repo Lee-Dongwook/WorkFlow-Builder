@@ -1,0 +1,8 @@
+{
+  "steps": [
+    {
+      "type": "llm",
+      "prompt": "Hello, how can I help you today?"
+    }
+  ]
+}
