@@ -3,7 +3,7 @@ import torch.nn.functional as F
 from model import TinyGPT
 from tokenizer import CharTokenizer
 
-block_size = 32
+block_size = 64
 
 text = open("data/train.txt").read()
 tokenizer = CharTokenizer(text)
@@ -14,23 +14,21 @@ model.eval()
 
 def sample(logits, temperature=1.0, top_k=10):
     logits = logits / temperature
+    top_k = min(top_k, logits.size(-1))
     values, indices = torch.topk(logits, top_k)
     probs = F.softmax(values, dim=-1)
     idx = torch.multinomial(probs, 1)
     return indices[idx]
 
-def generate(start, length=100, temperature=1.0, top_k=10):
+def generate(start, length=100, temperature=0.8, top_k=5):
     ids = tokenizer.encode(start)
+
     for _ in range(length):
         x = torch.tensor([ids[-block_size:]])
         logits = model(x)
-        next_id = sample(
-            logits[0, -1],
-            temperature=temperature,
-            top_k=top_k
-        )
+        next_id = sample(logits[0, -1], temperature, top_k)
         ids.append(next_id.item())
 
     return tokenizer.decode(ids)
 
-print(generate("g", temperature=0.8, top_k=5))
+print(generate("INPUT:", temperature=0.8, top_k=5))

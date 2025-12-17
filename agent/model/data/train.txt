@@ -7,5 +7,5 @@ OUTPUT: 작업 수행
 INPUT: step1 다음 step2
 OUTPUT: 순차 실행
 
-INPUT: gpt test
-OUTPUT: ok
+gpt test
+hello gpt

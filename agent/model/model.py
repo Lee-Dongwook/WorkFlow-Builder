@@ -13,11 +13,11 @@ class MultiHeadSelfAttention(nn.Module):
     
     def forward(self, x, mask):
         B, T, C = x.shape
-        qkv = self.qkv(x).chunk(3, dim=-1)
-        q, k, v = [
-            t.view(B, T, self.n_heads, self.d_head).transpose(1, 2)
-            for t in qkv
-        ]
+        q, k, v = self.qkv(x).chunk(3, dim=-1)
+        
+        q = q.view(B, T, self.n_heads, self.d_head).transpose(1, 2)
+        k = k.view(B, T, self.n_heads, self.d_head).transpose(1, 2)
+        v = v.view(B, T, self.n_heads, self.d_head).transpose(1, 2)
 
         att = (q @ k.transpose(-2, -1)) / math.sqrt(self.d_head)
         att = att.masked_fill(mask == 1, float('-inf'))
@@ -30,31 +30,39 @@ class MultiHeadSelfAttention(nn.Module):
 class Block(nn.Module):
     def __init__(self, d_model, n_heads):
         super().__init__()
+        self.ln1 = nn.LayerNorm(d_model)
+        self.ln2 = nn.LayerNorm(d_model)
         self.attn = MultiHeadSelfAttention(d_model, n_heads)
         self.ff = nn.Sequential(
             nn.Linear(d_model, 4 * d_model),
             nn.GELU(),
             nn.Linear(4 * d_model, d_model)
         )
-        self.ln1 = nn.LayerNorm(d_model)
-        self.ln2 = nn.LayerNorm(d_model)
+        self.dropout = nn.Dropout(0.1)
 
     def forward(self, x, mask):
-        x = x + self.attn(self.ln1(x), mask)
-        x = x + self.ff(self.ln2(x))
+        x = x + self.dropout(self.attn(self.ln1(x), mask))
+        x = x + self.dropout(self.ff(self.ln2(x)))
         return x
 
 class TinyGPT(nn.Module):
-    def __init__(self, vocab_size, d_model=128, n_heads=4, n_layers=2, block_size=32):
+    def __init__(self, vocab_size, d_model=128, n_heads=4, n_layers=2, block_size=64):
         super().__init__()
         self.block_size = block_size
 
         self.embed = nn.Embedding(vocab_size, d_model)
         self.pos = nn.Embedding(block_size, d_model)
+
         self.blocks = nn.ModuleList([
             Block(d_model, n_heads) for _ in range(n_layers)
         ])
         self.lm_head = nn.Linear(d_model, vocab_size)
+
+        self.lm_head.weight = self.embed.weight
+
+        for p in self.parameters():
+            if p.dim() > 1:
+                nn.init.xavier_uniform_(p)
 
     def forward(self, x):
         B, T = x.shape
