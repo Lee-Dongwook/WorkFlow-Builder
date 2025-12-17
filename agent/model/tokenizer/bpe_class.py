@@ -3,9 +3,9 @@ import os
 from .bpe import train_bpe, build_vocab, bpe_encode, decode
 
 class BPETokenizer:
-    def __init__(self, text=None, vocab_size=8000):
+    def __init__(self, text=None, num_merges=500):
         if text is not None:
-            self.merges = train_bpe(text, vocab_size)
+            self.merges = train_bpe(text, num_merges)
             self.stoi, self.itos = build_vocab(self.merges)
         else:
             self.merges = []

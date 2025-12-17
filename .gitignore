@@ -3,3 +3,9 @@ agent/model/*.pt
 !agent/model/data/generate_data.py
 
 agent/model/__pycache__/
+agent/model/tokenizer/__pycache__/
+
+**/*__pycache__/
+**/*.pyc
+**/*/merges.json
+**/*/vocab.json

@@ -24,14 +24,15 @@ def byte_encode(text):
 def get_pairs(word):
     return set(zip(word[:-1], word[1:]))
 
-def train_bpe(text, vocab_size=8000):
+def train_bpe(text, num_merges=500):
+    """BPE 학습: num_merges만큼 merge 수행"""
     text = byte_encode(text)
     words = text.split()
 
     vocab = Counter(tuple(word) for word in words)
     merges = []
 
-    while len(vocab) < vocab_size:
+    for _ in range(num_merges):
         pairs = Counter()
 
         for word, freq in vocab.items():
@@ -80,7 +81,10 @@ def bpe_encode(text, merges):
     return tokens
 
 def build_vocab(merges):
-    vocab = set()
+    # 기본 바이트 문자들을 먼저 추가 (BPE의 기본 단위)
+    vocab = set(BYTE_ENCODER.values())
+    
+    # merges에서 생성된 토큰들 추가
     for a, b in merges:
         vocab.add(a)
         vocab.add(b)
