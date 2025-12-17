@@ -1,8 +1,20 @@
 {
+  "inputs": {
+    "topic": "노코드 에이전트"
+  },
   "steps": [
     {
       "type": "llm",
-      "prompt": "Hello, how can I help you today?"
+      "prompt": "{{topic}}에 대해 한 문장으로 설명해줘."
+    },
+    {
+      "type": "tool",
+      "tool_name": "uppercase",
+      "input": "{{previous_output}}"
+    },
+    {
+      "type": "llm",
+      "prompt": "이 문장을 자연스럽게 다시 써줘:\n{{previous_output}}"
     }
   ]
 }

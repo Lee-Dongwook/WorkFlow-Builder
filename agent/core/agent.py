@@ -1,15 +1,38 @@
+import re
+
 class Agent:
-    def __init__(self, flow: dict, llm):
+    def __init__(self, flow: dict, llm, tools: dict):
         self.flow = flow
         self.llm = llm
+        self.tools = tools
         self.context = {}
     
     def run(self):
+        self.context.update(self.flow.get("inputs", {}))
+
         result = None
 
         for step in self.flow["steps"]:
-            if step["type"] == "llm":
-                result = self.llm.run(step["prompt"])
-                self.context["previous_output"] = result
+            result = self.execute_step(step)
+            self.context["previous_output"] = result
 
         return result
+
+    def execute_step(self, step: dict):
+        if step["type"] == "llm":
+            prompt = self.render(step["prompt"])
+            return self.llm.run(prompt)
+
+        if step["type"] == "tool":
+            tool = self.tools[step["tool_name"]]
+            tool_input = self.render(step["input"])
+            return tool.run(tool_input)
+    
+    def render(self, template: str) -> str:
+        def replace(match):
+            key = match.group(1)
+            if key not in self.context:
+                raise RuntimeError(f"❌ render 실패: {key} 없음")
+            return str(self.context[key])
+
+        return re.sub(r"\{\{(\w+)\}\}", replace, template)
