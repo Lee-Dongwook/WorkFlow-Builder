@@ -1,7 +1,7 @@
 import torch
 import math
 from model import TinyGPT
-from tokenizer import CharTokenizer
+from tokenizer.bpe_class import BPETokenizer
 
 block_size = 64
 batch_size = 16
@@ -10,7 +10,8 @@ lr = 3e-4
 
 train_text = open("data/train.txt").read()
 eval_text = open("data/eval.txt").read()
-tokenizer = CharTokenizer(train_text + eval_text)
+tokenizer = BPETokenizer.load("tokenizer/")
+
 train_data = torch.tensor(tokenizer.encode(train_text), dtype=torch.long)
 eval_data = torch.tensor(tokenizer.encode(eval_text), dtype=torch.long)
 

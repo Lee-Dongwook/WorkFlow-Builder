@@ -1,27 +1,17 @@
 import torch
 import torch.nn.functional as F
 from model import TinyGPT
-from tokenizer import CharTokenizer
+from tokenizer.bpe_class import BPETokenizer
 
 block_size = 64
 
-text = open("data/train.txt").read()
-tokenizer = CharTokenizer(text)
-
-model = TinyGPT(tokenizer.vocab_size, block_size=block_size)
+tokenizer = BPETokenizer.load("tokenizer/")
+model = TinyGPT(vocab_size=tokenizer.vocab_size)
 model.load_state_dict(torch.load("model.pt"))
 model.eval()
 
-def sample(logits, temperature=1.0, top_k=10):
-    logits = logits / temperature
-    top_k = min(top_k, logits.size(-1))
-    values, indices = torch.topk(logits, top_k)
-    probs = F.softmax(values, dim=-1)
-    idx = torch.multinomial(probs, 1)
-    return indices[idx]
-
 @torch.no_grad()
-def generate(model, tokenizer, prompt, max_new_tokens = 50, temperature=1.0, top_p=0.9):
+def generate(model, tokenizer, prompt, max_new_tokens=50, temperature=1.0, top_p=0.9):
     model.eval()
 
     idx = torch.tensor(tokenizer.encode(prompt), dtype=torch.long).unsqueeze(0)

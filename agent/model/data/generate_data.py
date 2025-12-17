@@ -44,3 +44,4 @@ with open("data/eval.txt", "w") as f:
     f.write("\n".join(eval_data))
 
 print("train:", len(train_data), "eval:", len(eval_data))
+

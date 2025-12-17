@@ -5,6 +5,8 @@ import math
 class MultiHeadSelfAttention(nn.Module):
     def __init__(self, d_model, n_heads):
         super().__init__()
+        assert d_model % n_heads == 0
+
         self.n_heads = n_heads
         self.d_head = d_model // n_heads
 
@@ -20,7 +22,8 @@ class MultiHeadSelfAttention(nn.Module):
         v = v.view(B, T, self.n_heads, self.d_head).transpose(1, 2)
 
         att = (q @ k.transpose(-2, -1)) / math.sqrt(self.d_head)
-        att = att.masked_fill(mask == 1, float('-inf'))
+
+        att = att.masked_fill(mask, float('-inf'))
         att = torch.softmax(att, dim=-1)
         
         out = att @ v
@@ -28,7 +31,7 @@ class MultiHeadSelfAttention(nn.Module):
         return self.proj(out)
 
 class Block(nn.Module):
-    def __init__(self, d_model, n_heads):
+    def __init__(self, d_model, n_heads, dropout=0.1):
         super().__init__()
         self.ln1 = nn.LayerNorm(d_model)
         self.ln2 = nn.LayerNorm(d_model)
@@ -38,7 +41,7 @@ class Block(nn.Module):
             nn.GELU(),
             nn.Linear(4 * d_model, d_model)
         )
-        self.dropout = nn.Dropout(0.1)
+        self.dropout = nn.Dropout(dropout)
 
     def forward(self, x, mask):
         x = x + self.dropout(self.attn(self.ln1(x), mask))
@@ -46,7 +49,7 @@ class Block(nn.Module):
         return x
 
 class TinyGPT(nn.Module):
-    def __init__(self, vocab_size, d_model=128, n_heads=4, n_layers=2, block_size=64):
+    def __init__(self, vocab_size, d_model=128, n_heads=4, n_layers=2, block_size=64, dropout=0.1):
         super().__init__()
         self.block_size = block_size
 
@@ -54,24 +57,40 @@ class TinyGPT(nn.Module):
         self.pos = nn.Embedding(block_size, d_model)
 
         self.blocks = nn.ModuleList([
-            Block(d_model, n_heads) for _ in range(n_layers)
+            Block(d_model, n_heads, dropout) for _ in range(n_layers)
         ])
-        self.lm_head = nn.Linear(d_model, vocab_size)
+        self.ln_f = nn.LayerNorm(d_model)
+        self.lm_head = nn.Linear(d_model, vocab_size, bias=False)
 
         self.lm_head.weight = self.embed.weight
 
-        for p in self.parameters():
-            if p.dim() > 1:
-                nn.init.xavier_uniform_(p)
+        mask = torch.triu(
+            torch.ones(block_size, block_size),
+            diagonal=1
+        ).bool()
+        
+        self.register_buffer("causal_mask", mask)
+        self.apply(self._init_weights)
+
+    def _init_weights(self, module):
+        if isinstance(module, nn.Linear):
+            nn.init.normal_(module.weight, std=0.02)
+            if module.bias is not None:
+                nn.init.zeros_(module.bias)
+        elif isinstance(module, nn.Embedding):
+            nn.init.normal_(module.weight, std=0.02)
 
     def forward(self, x):
         B, T = x.shape
-        pos = torch.arange(T, device=x.device)
+        assert T <= self.block_size
+
+        pos = torch.arange(T, device=x.device).unsqueeze(0)
         x = self.embed(x) + self.pos(pos)
 
-        mask = torch.triu(torch.ones(T, T), diagonal=1).to(x.device)
+        mask = self.causal_mask[:T, :T]
 
         for block in self.blocks:
             x = block(x, mask)
 
+        x = self.ln_f(x)
         return self.lm_head(x)
