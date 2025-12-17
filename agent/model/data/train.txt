@@ -1,3 +1,11 @@
-hello world
-hello gpt
-gpt is cool
+INPUT: 사과 바나나 포도 처리
+OUTPUT: 순차 처리 실행
+
+INPUT: 조건이 true면 실행
+OUTPUT: 작업 수행
+
+INPUT: step1 다음 step2
+OUTPUT: 순차 실행
+
+INPUT: gpt test
+OUTPUT: ok
