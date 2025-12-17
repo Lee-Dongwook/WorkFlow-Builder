@@ -1,26 +1,31 @@
 {
   "inputs": {
-    "topic": "노코드 에이전트",
+    "items": ["사과", "바나나", "포도"],
     "score": 0.8
   },
   "steps": [
     {
       "type": "llm",
-      "prompt": "{{topic}}에 대해 한 문장으로 설명해줘."
-    },
-    {
-      "type": "tool",
-      "tool_name": "uppercase",
-      "input": "{{previous_output}}"
-    },
-    {
-      "type": "llm",
-      "prompt": "이 문장을 자연스럽게 다시 써줘:\n{{previous_output}}"
+      "prompt": "시작합니다."
     },
     {
       "if": "{{score}} > 0.7",
-      "then": [{ "type": "llm", "prompt": "점수가 높음" }],
-      "else": [{ "type": "llm", "prompt": "점수가 낮음" }]
+      "then": [{ "type": "llm", "prompt": "조건 통과" }],
+      "else": [{ "type": "llm", "prompt": "조건 실패" }]
+    },
+    {
+      "for_each": "items",
+      "as": "item",
+      "steps": [
+        {
+          "type": "llm",
+          "prompt": "{{item}} 처리 중"
+        }
+      ]
+    },
+    {
+      "type": "llm",
+      "prompt": "모든 작업 완료"
     }
   ]
 }

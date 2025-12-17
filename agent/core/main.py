@@ -12,6 +12,7 @@ tools = {
 }
 
 agent = Agent(flow=flow, llm=LLM(), tools=tools)
-result = agent.run()
+logs = agent.run()
 
-print(result)
+for log in logs:
+    print(log)
