@@ -31,4 +31,10 @@ def generate(start, length=100, temperature=0.8, top_k=5):
 
     return tokenizer.decode(ids)
 
-print(generate("INPUT:", temperature=0.8, top_k=5))
+prompt = """### Instruction:
+사과 바나나 포도를 순서대로 처리해라
+
+### Response:
+"""
+
+print(generate(prompt, temperature=0.7, top_k=5))

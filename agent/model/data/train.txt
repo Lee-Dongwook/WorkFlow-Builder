@@ -1,11 +1,17 @@
-INPUT: 사과 바나나 포도 처리
-OUTPUT: 순차 처리 실행
+### Instruction:
+사과 바나나 포도를 순서대로 처리해라
 
-INPUT: 조건이 true면 실행
-OUTPUT: 작업 수행
+### Response:
+사과 → 바나나 → 포도
 
-INPUT: step1 다음 step2
-OUTPUT: 순차 실행
+### Instruction:
+조건이 true면 작업을 실행해라
 
-gpt test
-hello gpt
+### Response:
+작업을 실행한다
+
+### Instruction:
+step1 다음에 step2를 실행해라
+
+### Response:
+step1 후 step2 실행

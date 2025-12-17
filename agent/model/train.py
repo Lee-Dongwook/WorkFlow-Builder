@@ -5,7 +5,7 @@ from tokenizer import CharTokenizer
 
 block_size = 64
 batch_size = 16
-steps = 5000
+steps = 10000
 lr = 3e-4
 
 text = open("data/train.txt").read()
