@@ -1,17 +1,1619 @@
 ### Instruction:
-사과 바나나 포도를 순서대로 처리해라
+사과 바나나 포도를 차례대로 처리해라
 
 ### Response:
 사과 → 바나나 → 포도
 
 ### Instruction:
-조건이 true면 작업을 실행해라
+사과 바나나 포도를 차례대로 처리해라
 
 ### Response:
-작업을 실행한다
+사과 → 바나나 → 포도
 
 ### Instruction:
-step1 다음에 step2를 실행해라
+순서를 지켜서 사과 바나나 포도 실행
 
 ### Response:
-step1 후 step2 실행
+사과 → 바나나 → 포도
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 사과 바나나 포도 실행
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 사과 바나나 포도 실행
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 사과 바나나 포도 실행
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 사과 바나나 포도 실행
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 사과 바나나 포도 실행
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 사과 바나나 포도 실행
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 사과 바나나 포도 실행
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 사과 바나나 포도 실행
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 A B C 실행
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+순서를 지켜서 사과 바나나 포도 실행
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+A B C를 차례대로 처리해라
+
+### Response:
+A → B → C
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 사과 바나나 포도
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 사과 바나나 포도 실행
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+로그인 결제 완료를 차례대로 처리해라
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 step1 step2 step3 실행
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+다음 작업을 순서대로 실행해라: step1 step2 step3
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
+
+### Instruction:
+다음 작업을 순서대로 실행해라: 로그인 결제 완료
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+순서를 지켜서 사과 바나나 포도 실행
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+순서를 지켜서 로그인 결제 완료 실행
+
+### Response:
+로그인 → 결제 → 완료
+
+### Instruction:
+사과 바나나 포도를 차례대로 처리해라
+
+### Response:
+사과 → 바나나 → 포도
+
+### Instruction:
+다음 작업을 순서대로 실행해라: A B C
+
+### Response:
+A → B → C
+
+### Instruction:
+step1 step2 step3를 차례대로 처리해라
+
+### Response:
+step1 → step2 → step3
