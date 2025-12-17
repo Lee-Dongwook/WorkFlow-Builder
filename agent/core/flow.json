@@ -1,6 +1,7 @@
 {
   "inputs": {
-    "topic": "노코드 에이전트"
+    "topic": "노코드 에이전트",
+    "score": 0.8
   },
   "steps": [
     {
@@ -15,6 +16,11 @@
     {
       "type": "llm",
       "prompt": "이 문장을 자연스럽게 다시 써줘:\n{{previous_output}}"
+    },
+    {
+      "if": "{{score}} > 0.7",
+      "then": [{ "type": "llm", "prompt": "점수가 높음" }],
+      "else": [{ "type": "llm", "prompt": "점수가 낮음" }]
     }
   ]
 }
