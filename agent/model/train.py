@@ -1,6 +1,5 @@
 import torch
 import math
-from torch.amp import autocast, GradScaler
 from model import TinyGPT
 from tokenizer.bpe_class import BPETokenizer
 
@@ -18,15 +17,25 @@ max_grad_norm = 1.0
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
-train_text = open("data/train.txt").read()
-examples = train_text.strip().split("\n\n")
-train_text_with_eos = ("<|eos|>\n\n".join(examples) + "<|eos|>")
-
-eval_text = open("data/eval.txt").read()
 tokenizer = BPETokenizer.load("tokenizer/")
 
-train_data = torch.tensor(tokenizer.encode(train_text_with_eos), dtype=torch.long, device=device)
-eval_data = torch.tensor(tokenizer.encode(eval_text), dtype=torch.long, device=device)
+# Train data: 각 예제 뒤에 실제 EOS 토큰 ID 삽입
+train_text = open("data/train.txt").read()
+examples = train_text.strip().split("\n\n")
+train_ids = []
+for example in examples:
+    train_ids.extend(tokenizer.encode(example))
+    train_ids.append(tokenizer.eos_id)  # 실제 EOS 토큰 ID
+train_data = torch.tensor(train_ids, dtype=torch.long, device=device)
+
+# Eval data: 동일하게 처리
+eval_text = open("data/eval.txt").read()
+eval_examples = eval_text.strip().split("\n\n")
+eval_ids = []
+for example in eval_examples:
+    eval_ids.extend(tokenizer.encode(example))
+    eval_ids.append(tokenizer.eos_id)
+eval_data = torch.tensor(eval_ids, dtype=torch.long, device=device)
 
 model = TinyGPT(tokenizer.vocab_size, block_size=block_size).to(device)
 optimizer = torch.optim.AdamW(model.parameters(), lr=max_lr)
@@ -47,11 +56,11 @@ def evaluate():
     losses = []
     
     for _ in range(50):
-        idx = torch.randint(0, len(eval_data) - block_size - 1, (batch_size,))
+        idx = torch.randint(0, len(eval_data) - block_size - 1, (batch_size,), device=device)
         x = torch.stack([eval_data[i:i+block_size] for i in idx])
         y = torch.stack([eval_data[i+1:i+block_size+1] for i in idx])
 
-        logits = model(x)
+        logits, _ = model(x, None)
         loss = loss_fn(
             logits.view(-1, tokenizer.vocab_size),
             y.view(-1)
@@ -62,7 +71,6 @@ def evaluate():
     return sum(losses) / len(losses)
 
 model.train()
-scaler = GradScaler()
 
 for step in range(total_steps):
     lr = get_lr(step)
@@ -73,16 +81,13 @@ for step in range(total_steps):
     x = torch.stack([train_data[i:i+block_size] for i in idx])
     y = torch.stack([train_data[i+1:i+block_size+1] for i in idx])
 
-    with autocast():
-        logits, _ = model(x, None)
-        loss = loss_fn(logits.view(-1, tokenizer.vocab_size), y.view(-1))
+    logits, _ = model(x, None)
+    loss = loss_fn(logits.view(-1, tokenizer.vocab_size), y.view(-1))
 
     optimizer.zero_grad()
-    scaler.scale(loss).backward()
-    scaler.unscale_(optimizer)
+    loss.backward()
     torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
-    scaler.step(optimizer)
-    scaler.update()
+    optimizer.step()
 
     if step % eval_interval == 0:
         eval_loss = evaluate()
@@ -90,7 +95,7 @@ for step in range(total_steps):
             f"step {step:5d} | "
             f"lr {lr:.2e} | "
             f"train ppl {math.exp(loss.item()):7.2f} | "
-            f"eval ppl {math.exp(eval_loss):7.2f} | "
+            f"eval ppl {math.exp(eval_loss):7.2f}"
         )
 
 torch.save(model.state_dict(), "model.pt")

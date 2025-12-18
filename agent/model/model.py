@@ -132,7 +132,7 @@ class TinyGPT(nn.Module):
         self.register_buffer("causal_mask", mask)
 
         head_dim = d_model // n_heads
-        freqs_cis = precompute_freqs_cis(head_dim, block_size)
+        freqs_cis = precompute_freqs_cis(head_dim, block_size * 4)
         self.register_buffer("freqs_cis", freqs_cis)
         self.apply(self._init_weights)
 
@@ -161,7 +161,7 @@ class TinyGPT(nn.Module):
         mask = torch.triu(
             torch.ones(T, total_len, device=x.device),
             diagonal=start_pos + 1
-        ).bool()
+        ).bool().unsqueeze(0).unsqueeze(0)  # (1, 1, T, total_len) for broadcast
 
         new_cache = []
         for i, block in enumerate(self.blocks):

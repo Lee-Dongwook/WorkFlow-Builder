@@ -7,7 +7,10 @@ block_size = 64
 
 tokenizer = BPETokenizer.load("tokenizer/")
 model = TinyGPT(vocab_size=tokenizer.vocab_size)
-model.load_state_dict(torch.load("model.pt"))
+
+state_dict = torch.load("model.pt")
+state_dict.pop("freqs_cis", None)  
+model.load_state_dict(state_dict, strict=False)
 model.eval()
 
 @torch.no_grad()
