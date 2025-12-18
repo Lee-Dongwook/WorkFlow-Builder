@@ -25,7 +25,7 @@ def apply_rotary_embedding(xq, xk, freqs_cis):
     return xq_out.type_as(xq), xk_out.type_as(xk)
 
 class MultiHeadSelfAttention(nn.Module):
-    def __init__(self, d_model, n_heads):
+    def __init__(self, d_model, n_heads, dropout=0.1):
         super().__init__()
         assert d_model % n_heads == 0
 
@@ -34,6 +34,8 @@ class MultiHeadSelfAttention(nn.Module):
 
         self.qkv = nn.Linear(d_model, d_model * 3)
         self.proj = nn.Linear(d_model, d_model)
+
+        self.attn_dropout = nn.Dropout(dropout)
     
     def forward(self, x, mask, freqs_cis, cache=None):
         B, T, C = x.shape
@@ -55,9 +57,11 @@ class MultiHeadSelfAttention(nn.Module):
         att = (q @ k.transpose(-2, -1)) / math.sqrt(self.d_head)
         att = att.masked_fill(mask, float('-inf'))
         att = torch.softmax(att, dim=-1)
+        att = self.attn_dropout(att)
         
         out = att @ v
         out = out.transpose(1, 2).contiguous().view(B, T, C)
+
         return self.proj(out), new_cache
 
 class Block(nn.Module):
@@ -65,7 +69,9 @@ class Block(nn.Module):
         super().__init__()
         self.ln1 = nn.LayerNorm(d_model)
         self.ln2 = nn.LayerNorm(d_model)
-        self.attn = MultiHeadSelfAttention(d_model, n_heads)
+
+        self.attn = MultiHeadSelfAttention(d_model, n_heads, dropout)
+        
         self.ff = nn.Sequential(
             nn.Linear(d_model, 4 * d_model),
             nn.GELU(),
