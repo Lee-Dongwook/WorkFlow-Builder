@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import math
 
 def precompute_freqs_cis(dim, max_seq_len, theta=10000.0):
@@ -23,6 +24,23 @@ def apply_rotary_embedding(xq, xk, freqs_cis):
     xk_out = torch.view_as_real(xk_out).flatten(-2)
 
     return xq_out.type_as(xq), xk_out.type_as(xk)
+
+class SwiGLU(nn.Module):
+    def __init__(self, d_model, hidden_dim=None, dropout=0.1):
+        super().__init__()
+
+        if hidden_dim is None:
+            hidden_dim = int(d_model * 8 / 3)
+            hidden_dim = ((hidden_dim + 63) // 64) * 64
+        
+        self.gate = nn.Linear(d_model, hidden_dim, bias=False)
+        self.up = nn.Linear(d_model, hidden_dim, bias=False)
+        self.down = nn.Linear(hidden_dim, d_model, bias=False)
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x):
+        return self.dropout(self.down(F.silu(self.gate(x)) * self.up(x)))
+
 
 class MultiHeadSelfAttention(nn.Module):
     def __init__(self, d_model, n_heads, dropout=0.1):
@@ -72,17 +90,13 @@ class Block(nn.Module):
 
         self.attn = MultiHeadSelfAttention(d_model, n_heads, dropout)
         
-        self.ff = nn.Sequential(
-            nn.Linear(d_model, 4 * d_model),
-            nn.GELU(),
-            nn.Linear(4 * d_model, d_model)
-        )
+        self.ff = SwiGLU(d_model, dropout=dropout)
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x, mask, freqs_cis, cache=None):
         attn_out, new_cache = self.attn(self.ln1(x), mask, freqs_cis, cache)
         x = x + self.dropout(attn_out)
-        x = x + self.dropout(self.ff(self.ln2(x)))
+        x = x + self.ff(self.ln2(x))
         return x, new_cache
 
 class TinyGPT(nn.Module):
