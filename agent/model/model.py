@@ -35,7 +35,7 @@ class MultiHeadSelfAttention(nn.Module):
         self.qkv = nn.Linear(d_model, d_model * 3)
         self.proj = nn.Linear(d_model, d_model)
     
-    def forward(self, x, mask, freqs_cis):
+    def forward(self, x, mask, freqs_cis, cache=None):
         B, T, C = x.shape
         q, k, v = self.qkv(x).chunk(3, dim=-1)
         
@@ -45,13 +45,20 @@ class MultiHeadSelfAttention(nn.Module):
 
         q, k = apply_rotary_embedding(q, k, freqs_cis)
 
+        if cache is not None:
+            cached_k, cached_v = cache
+            k = torch.cat([cached_k, k], dim=2)
+            v = torch.cat([cached_v, v], dim=2)
+
+        new_cache = (k, v)
+
         att = (q @ k.transpose(-2, -1)) / math.sqrt(self.d_head)
         att = att.masked_fill(mask, float('-inf'))
         att = torch.softmax(att, dim=-1)
         
         out = att @ v
         out = out.transpose(1, 2).contiguous().view(B, T, C)
-        return self.proj(out)
+        return self.proj(out), new_cache
 
 class Block(nn.Module):
     def __init__(self, d_model, n_heads, dropout=0.1):
@@ -66,10 +73,11 @@ class Block(nn.Module):
         )
         self.dropout = nn.Dropout(dropout)
 
-    def forward(self, x, mask, freqs_cis):
-        x = x + self.dropout(self.attn(self.ln1(x), mask, freqs_cis))
+    def forward(self, x, mask, freqs_cis, cache=None):
+        attn_out, new_cache = self.attn(self.ln1(x), mask, freqs_cis, cache)
+        x = x + self.dropout(attn_out)
         x = x + self.dropout(self.ff(self.ln2(x)))
-        return x
+        return x, new_cache
 
 class TinyGPT(nn.Module):
     def __init__(self, vocab_size, d_model=128, n_heads=4, n_layers=2, block_size=64, dropout=0.1):
@@ -104,16 +112,31 @@ class TinyGPT(nn.Module):
         elif isinstance(module, nn.Embedding):
             nn.init.normal_(module.weight, std=0.02)
 
-    def forward(self, x):
+    def forward(self, x, cache=None):
         B, T = x.shape
-        assert T <= self.block_size
         x = self.embed(x)
 
-        mask = self.causal_mask[:T, :T]
-        freqs_cis = self.freqs_cis[:T]
+        if cache is not None and cache[0] is not None:
+            prev_len = cache[0][0].shape[2]
+            start_pos = prev_len
+        else:
+            start_pos = 0
 
-        for block in self.blocks:
-            x = block(x, mask, freqs_cis)
+        freqs_cis = self.freqs_cis[start_pos:start_pos + T]
+
+        total_len = start_pos + T
+
+        mask = torch.triu(
+            torch.ones(T, total_len, device=x.device),
+            diagonal=start_pos + 1
+        ).bool()
+
+        new_cache = []
+        for i, block in enumerate(self.blocks):
+            layer_cache = cache[i] if cache is not None else None
+            x, layer_new_cache = block(x, mask, freqs_cis, layer_cache)
+            new_cache.append(layer_new_cache)
 
         x = self.ln_f(x)
-        return self.lm_head(x)
+        logits =  self.lm_head(x)
+        return logits, new_cache

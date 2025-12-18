@@ -15,24 +15,21 @@ def generate(model, tokenizer, prompt, max_new_tokens=50, temperature=1.0, top_p
     model.eval()
 
     idx = torch.tensor(tokenizer.encode(prompt), dtype=torch.long).unsqueeze(0)
+    cache = None
+
+    logits, cache = model(idx, cache)
 
     for _ in range(max_new_tokens):
-        idx_cond = idx[:, -model.block_size:]
-        logits = model(idx_cond)
-
         logits = logits[:, -1, :] / temperature
         probs = F.softmax(logits, dim=-1)
 
         sorted_probs, sorted_idx = torch.sort(
             probs, descending=True
         )
-        
         cumulative_probs = torch.cumsum(sorted_probs, dim=-1)
-
         cutoff = cumulative_probs > top_p
         cutoff[..., 1:] = cutoff[..., :-1].clone()
         cutoff[..., 0] = False
-
         sorted_probs[cutoff] = 0.0
         sorted_probs /= sorted_probs.sum(dim=-1, keepdim=True) 
 
@@ -40,6 +37,8 @@ def generate(model, tokenizer, prompt, max_new_tokens=50, temperature=1.0, top_p
         next_idx = torch.gather(sorted_idx, -1, next_token)
 
         idx = torch.cat([idx, next_idx], dim=1)
+
+        logits, cache = model(next_idx, cache)
 
     return tokenizer.decode(idx[0].tolist())
 
