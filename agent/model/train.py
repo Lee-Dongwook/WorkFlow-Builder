@@ -19,10 +19,13 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
 train_text = open("data/train.txt").read()
+examples = train_text.strip().split("\n\n")
+train_text_with_eos = ("<|eos|>\n\n".join(examples) + "<|eos|>")
+
 eval_text = open("data/eval.txt").read()
 tokenizer = BPETokenizer.load("tokenizer/")
 
-train_data = torch.tensor(tokenizer.encode(train_text), dtype=torch.long, device=device)
+train_data = torch.tensor(tokenizer.encode(train_text_with_eos), dtype=torch.long, device=device)
 eval_data = torch.tensor(tokenizer.encode(eval_text), dtype=torch.long, device=device)
 
 model = TinyGPT(tokenizer.vocab_size, block_size=block_size).to(device)

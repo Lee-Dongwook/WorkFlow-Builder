@@ -36,11 +36,13 @@ def generate(model, tokenizer, prompt, max_new_tokens=50, temperature=1.0, top_p
         next_token = torch.multinomial(sorted_probs, num_samples=1)
         next_idx = torch.gather(sorted_idx, -1, next_token)
 
-        idx = torch.cat([idx, next_idx], dim=1)
+        if next_idx.item() == tokenizer.eos_id:
+            break
 
+        idx = torch.cat([idx, next_idx], dim=1)
         logits, cache = model(next_idx, cache)
 
-    return tokenizer.decode(idx[0].tolist())
+    return tokenizer.decode(idx[0].tolist(), skip_special=True)
 
 prompt = """### Instruction:
 사과 바나나 포도를 순서대로 처리해라
