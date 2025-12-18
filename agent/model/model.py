@@ -25,6 +25,16 @@ def apply_rotary_embedding(xq, xk, freqs_cis):
 
     return xq_out.type_as(xq), xk_out.type_as(xk)
 
+class RMSNorm(nn.Module):
+    def __init__(self, dim, eps=1e-6):
+        super().__init__()
+        self.eps = eps
+        self.weight = nn.Parameter(torch.ones(dim))
+
+    def forward(self, x):
+        rms = torch.sqrt(torch.mean(x ** 2, dim=-1, keepdim=True) + self.eps)
+        return x / rms * self.weight
+
 class SwiGLU(nn.Module):
     def __init__(self, d_model, hidden_dim=None, dropout=0.1):
         super().__init__()
@@ -85,8 +95,9 @@ class MultiHeadSelfAttention(nn.Module):
 class Block(nn.Module):
     def __init__(self, d_model, n_heads, dropout=0.1):
         super().__init__()
-        self.ln1 = nn.LayerNorm(d_model)
-        self.ln2 = nn.LayerNorm(d_model)
+
+        self.ln1 = RMSNorm(d_model)
+        self.ln2 = RMSNorm(d_model)
 
         self.attn = MultiHeadSelfAttention(d_model, n_heads, dropout)
         
@@ -109,7 +120,8 @@ class TinyGPT(nn.Module):
         self.blocks = nn.ModuleList([
             Block(d_model, n_heads, dropout) for _ in range(n_layers)
         ])
-        self.ln_f = nn.LayerNorm(d_model)
+        self.ln_f = RMSNorm(d_model)
+        
         self.lm_head = nn.Linear(d_model, vocab_size, bias=False)
         self.lm_head.weight = self.embed.weight
 
